@@ -1,3 +1,20 @@
-Get started by customizing your environment (defined in the .idx/dev.nix file) with the tools and IDE extensions you'll need for your project!
+# Mini Link Memo
 
-Learn more at https://developers.google.com/idx/guides/customize-idx-env
+A simple link memo app built to practice this workflow:
+
+Firebase Studio → GitHub → Cloudflare Pages
+
+## Features
+
+- Add link title, URL, memo, and category
+- Save data in localStorage
+- Search saved links
+- Open, copy, and delete links
+
+## Deployment
+
+- Framework: React + Vite
+- Hosting: Cloudflare Pages
+- Build command: npm run build
+- Output directory: dist
+- Root directory: mini-link-memo
