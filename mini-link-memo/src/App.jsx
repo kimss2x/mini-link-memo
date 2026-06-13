@@ -164,6 +164,55 @@ function App() {
             </div>
           )}
         </div>
+
+        {/* Feedback Form Section */}
+        <div className="card form-card">
+          <h2>Send Feedback 💌</h2>
+          {/* 
+            Connect this form to Formspree.
+            1. Create a new form on formspree.io.
+            2. Get your form's ID from the endpoint URL (e.g., https://formspree.io/f/YOUR_FORM_ID).
+            3. Replace 'YOUR_FORM_ID' in the action URL below.
+          */}
+          <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <div className="form-group">
+              <label htmlFor="feedback-name">Your Name</label>
+              <input
+                id="feedback-name"
+                type="text"
+                name="name"
+                placeholder="Noah"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="feedback-email">Your Email</label>
+              <input
+                id="feedback-email"
+                type="email"
+                name="email"
+                placeholder="noah@example.com"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="feedback-message">Your Message</label>
+              <textarea
+                id="feedback-message"
+                name="message"
+                rows="4"
+                placeholder="I love this app!"
+                required
+              ></textarea>
+            </div>
+            <button type="submit" className="btn btn-primary">
+              Send Feedback
+            </button>
+          </form>
+          <p className="form-note">
+            This form will be connected with Formspree.
+          </p>
+        </div>
       </main>
 
       <footer className="app-footer">
