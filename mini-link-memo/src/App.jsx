@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import './index.css';
 
 // SVG Icons as React Components for better control
@@ -89,6 +89,83 @@ const WeatherWidget = () => {
           <div className="weather-item">Wind: {weather.windspeed} km/h</div>
         </div>
       )}
+    </div>
+  );
+};
+
+// Data Management Component
+const DataManagement = ({ links, setLinks }) => {
+  const fileInputRef = useRef(null);
+
+  const handleExport = () => {
+    if (links.length === 0) {
+        alert('No links to export!');
+        return;
+    }
+    const dataStr = JSON.stringify(links, null, 2);
+    const dataBlob = new Blob([dataStr], { type: 'application/json' });
+    const url = URL.createObjectURL(dataBlob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'mini-link-memo-backup.json';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
+  const handleImport = (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const importedLinks = JSON.parse(e.target.result);
+        // Basic validation
+        if (Array.isArray(importedLinks)) {
+            setLinks(importedLinks);
+            alert('Links imported successfully!');
+        } else {
+            throw new Error('Invalid file format.');
+        }
+      } catch (error) {
+        alert(`Failed to import links: ${error.message}`);
+      }
+    };
+    reader.readAsText(file);
+    // Reset file input
+    event.target.value = null;
+  };
+
+  const handleClearAll = () => {
+    if (window.confirm('Are you sure you want to delete ALL links? This action cannot be undone.')) {
+      setLinks([]);
+      alert('All links have been cleared.');
+    }
+  };
+
+  return (
+    <div className="card data-management-card">
+      <h2>Data Management</h2>
+      <div className="data-actions-grid">
+        <button onClick={handleExport} className="btn btn-secondary">
+          Export JSON
+        </button>
+        <button onClick={() => fileInputRef.current.click()} className="btn btn-secondary">
+          Import JSON
+        </button>
+        <input
+          type="file"
+          ref={fileInputRef}
+          onChange={handleImport}
+          accept=".json"
+          style={{ display: 'none' }}
+        />
+        <button onClick={handleClearAll} className="btn btn-danger">
+          Clear All
+        </button>
+      </div>
     </div>
   );
 };
@@ -229,6 +306,8 @@ function App() {
             </div>
           )}
         </div>
+
+        <DataManagement links={links} setLinks={setLinks} />
 
         {/* Feedback Form Section */}
         <div className="card form-card">

@@ -28,6 +28,7 @@
   --border-color: #eee4d8;
   --shadow-color: rgba(87, 76, 68, 0.08);
   --danger-color: #ef4444;
+  --danger-hover-color: #e53e3e;
   --font-family: 'Quicksand', sans-serif;
 }
 
@@ -94,7 +95,7 @@ body {
 }
 
 /* Form Card */
-.form-card h2 {
+.form-card h2, .data-management-card h2 {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--header-text-color);
@@ -166,6 +167,25 @@ body {
   background-color: var(--accent-pink-hover);
 }
 
+.btn-secondary {
+    background-color: #f7f2ec;
+    color: var(--primary-text-color);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background-color: #fcefee;
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: var(--danger-hover-color);
+}
+
 .form-note {
     font-size: 0.85rem;
     text-align: center;
@@ -213,6 +233,17 @@ body {
     color: var(--danger-color);
     font-size: 1rem;
     font-weight: 600;
+}
+
+/* Data Management */
+.data-management-card {
+    padding: 1.5rem;
+}
+
+.data-actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
 }
 
 
@@ -390,7 +421,7 @@ body {
     border-radius: 16px;
   }
   
-  .links-grid {
+  .links-grid, .data-actions-grid {
     grid-template-columns: 1fr; /* Stack on mobile */
     gap: 1.5rem;
   }
