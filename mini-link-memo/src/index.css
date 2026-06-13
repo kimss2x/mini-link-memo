@@ -173,6 +173,49 @@ body {
     margin-top: 1.5rem;
 }
 
+/* Weather Widget */
+.weather-widget {
+    padding: 1.5rem;
+}
+
+.weather-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.weather-header h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--header-text-color);
+}
+
+.weather-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    font-size: 1.1rem;
+    color: var(--primary-text-color);
+}
+
+.weather-item.temp {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.refresh-btn {
+    padding: 0.5rem;
+}
+
+.error-state p {
+    color: var(--danger-color);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+
 /* Search Card */
 .search-bar {
   display: flex;

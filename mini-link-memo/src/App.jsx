@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import './index.css';
 
 // SVG Icons as React Components for better control
@@ -29,6 +29,69 @@ const SearchIcon = () => (
     <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
   </svg>
 );
+
+const RefreshIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="23 4 23 10 17 10"></polyline>
+        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+    </svg>
+);
+
+// Weather Widget Component
+const WeatherWidget = () => {
+  const [weather, setWeather] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const fetchWeather = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current_weather=true');
+      if (!response.ok) {
+        throw new Error('Failed to fetch weather data.');
+      }
+      const data = await response.json();
+      setWeather(data.current_weather);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchWeather();
+  }, [fetchWeather]);
+
+  const getWeatherEmoji = (code) => {
+    const codes = {
+        0: '☀️', 1: '🌤️', 2: '⛅️', 3: '☁️', 45: '🌫️', 48: '🌫️',
+        51: '🌦️', 53: '🌦️', 55: '🌦️', 61: '🌧️', 63: '🌧️', 65: '🌧️',
+        80: '🌦️', 81: '🌦️', 82: '⛈️', 95: '⛈️',
+    };
+    return codes[code] || '🤷‍♀️';
+  };
+
+  return (
+    <div className="card weather-widget">
+      <div className="weather-header">
+        <h3>Today's Tiny Weather</h3>
+        <button onClick={fetchWeather} className="action-btn refresh-btn" disabled={loading}>
+          <RefreshIcon />
+        </button>
+      </div>
+      {loading && <div className="weather-content"><p>Loading...</p></div>}
+      {error && <div className="weather-content error-state"><p>Error: {error}</p></div>}
+      {weather && !loading && (
+        <div className="weather-content">
+          <div className="weather-item temp">{getWeatherEmoji(weather.weathercode)} {weather.temperature}°C</div>
+          <div className="weather-item">Wind: {weather.windspeed} km/h</div>
+        </div>
+      )}
+    </div>
+  );
+};
 
 function App() {
   const [links, setLinks] = useState([]);
@@ -85,6 +148,8 @@ function App() {
       </header>
 
       <main className="main-content">
+        <WeatherWidget />
+
         <div className="card form-card">
           <form onSubmit={handleAddLink}>
             <div className="form-group">
