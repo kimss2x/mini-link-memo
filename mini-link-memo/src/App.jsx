@@ -81,7 +81,7 @@ function App() {
     <div className="app-container">
       <header className="app-header">
         <h1>Mini Link Memo</h1>
-        <p>Save your favorite links, ideas, and references.</p>
+        <p>A cozy little place to collect links, ideas, and inspiration.</p>
       </header>
 
       <main className="main-content">
@@ -125,16 +125,14 @@ function App() {
           </form>
         </div>
 
-        <div className="card search-card">
-          <div className="search-bar">
-             <SearchIcon />
-            <input
-              type="text"
-              placeholder="Search links..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
+        <div className="search-bar">
+           <SearchIcon />
+          <input
+            type="text"
+            placeholder="Search links..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
         </div>
 
         <div className="links-grid">
@@ -162,7 +160,7 @@ function App() {
             ))
           ) : (
             <div className="empty-state">
-              <p>No links saved yet. Add one above! 📝</p>
+              <p>Your creative journey starts here. Add a link to begin!</p>
             </div>
           )}
         </div>

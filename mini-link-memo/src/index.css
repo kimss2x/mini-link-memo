@@ -1,15 +1,34 @@
-/* General Styles & Resets */
+/*
+  New Design Direction:
+  - Cute personal creator tool for Noah.
+  - Soft cream or light lavender background.
+  - Pastel blue and soft pink accents.
+  - Rounded 20px cards.
+  - Warm cozy header area.
+  - Friendly and charming title.
+  - Small, elegant emoji details.
+  - Cute category badges.
+  - Subtle hover animations.
+  - Charming empty state.
+  - Centered and polished layout.
+  - Mobile and desktop friendly.
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+
 :root {
-  --bg-color: #f0f4f8;
+  --bg-color: #fdfaf6;
   --card-bg-color: #ffffff;
-  --primary-text-color: #334155;
-  --secondary-text-color: #64748b;
-  --primary-accent-color: #6366f1;
-  --primary-accent-hover: #4f46e5;
+  --header-text-color: #574c44;
+  --primary-text-color: #6e6056;
+  --secondary-text-color: #a89d95;
+  --accent-pink: #f4acb7;
+  --accent-blue: #a2d2ff;
+  --accent-pink-hover: #f39db0;
+  --border-color: #eee4d8;
+  --shadow-color: rgba(87, 76, 68, 0.08);
   --danger-color: #ef4444;
-  --border-color: #e2e8f0;
-  --shadow-color: rgba(100, 116, 139, 0.1);
-  --font-family: 'Inter', sans-serif;
+  --font-family: 'Quicksand', sans-serif;
 }
 
 * {
@@ -29,48 +48,55 @@ body {
 .app-container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 3rem 2rem;
 }
 
 .main-content {
   display: grid;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
-/* Header */
+/* Cozy Header */
 .app-header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
+  padding: 2rem 1rem;
+  background: linear-gradient(180deg, rgba(255,255,255,0) 0%, #fffbf2 100%);
 }
 
 .app-header h1 {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   font-weight: 700;
-  color: var(--primary-text-color);
+  color: var(--header-text-color);
+  margin-bottom: 0.5rem;
 }
 
 .app-header p {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   color: var(--secondary-text-color);
+  max-width: 450px;
+  margin: 0 auto;
 }
 
 /* Card Base Style */
 .card {
   background-color: var(--card-bg-color);
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 6px -1px var(--shadow-color), 0 2px 4px -2px var(--shadow-color);
-  transition: box-shadow 0.2s ease-in-out;
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 5px 15px var(--shadow-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-    box-shadow: 0 10px 15px -3px var(--shadow-color), 0 4px 6px -4px var(--shadow-color);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px var(--shadow-color);
 }
 
 /* Form Card */
 .form-card form {
   display: grid;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .form-group {
@@ -79,47 +105,54 @@ body {
 }
 
 .form-group label {
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-size: 0.9rem;
+  font-weight: 600;
   margin-bottom: 0.5rem;
-  color: var(--secondary-text-color);
+  color: var(--primary-text-color);
 }
 
 .form-group input {
-  padding: 0.75rem 1rem;
+  padding: 0.8rem 1rem;
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: 12px;
   font-size: 1rem;
+  font-family: var(--font-family);
   transition: border-color 0.2s, box-shadow 0.2s;
+  background-color: #fdfdfd;
 }
 
 .form-group input:focus {
   outline: none;
-  border-color: var(--primary-accent-color);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+  border-color: var(--accent-pink);
+  box-shadow: 0 0 0 3px rgba(244, 172, 183, 0.3);
 }
 
 .btn {
-  padding: 0.75rem 1.5rem;
+  padding: 0.9rem 1.5rem;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
+  font-family: var(--font-family);
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
 }
 
 .btn-primary {
-  background-color: var(--primary-accent-color);
+  background-color: var(--accent-pink);
   color: white;
 }
 
 .btn-primary:hover {
-  background-color: var(--primary-accent-hover);
+  background-color: var(--accent-pink-hover);
 }
 
 /* Search Card */
@@ -127,14 +160,20 @@ body {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  background-color: #f8fafc;
-  border-radius: 8px;
-  padding: 0.5rem 1rem;
+  background-color: var(--card-bg-color);
   border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 0.8rem 1.2rem;
+  transition: box-shadow 0.3s ease;
+}
+
+.search-bar:focus-within {
+  box-shadow: 0 0 0 3px rgba(162, 210, 255, 0.4);
 }
 
 .search-bar svg {
   color: var(--secondary-text-color);
+  flex-shrink: 0;
 }
 
 .search-bar input {
@@ -142,7 +181,8 @@ body {
   border: none;
   background: transparent;
   font-size: 1rem;
-  padding: 0.5rem;
+  font-family: var(--font-family);
+  color: var(--primary-text-color);
 }
 
 .search-bar input:focus {
@@ -153,75 +193,80 @@ body {
 .links-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 .link-card {
   display: flex;
   flex-direction: column;
   background-color: var(--card-bg-color);
-  border-radius: 12px;
-  box-shadow: 0 4px 6px -1px var(--shadow-color), 0 2px 4px -2px var(--shadow-color);
-  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  box-shadow: 0 5px 15px var(--shadow-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .link-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 15px -3px var(--shadow-color), 0 4px 6px -4px var(--shadow-color);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px var(--shadow-color);
 }
 
 .link-card-header {
-  padding: 0.75rem 1rem;
+  padding: 1rem 1.2rem;
   border-bottom: 1px solid var(--border-color);
   display: flex;
   justify-content: flex-end;
+  min-height: 50px; /* Ensure consistent height */
 }
 
 .category-badge {
-  background-color: #e0e7ff;
-  color: var(--primary-accent-color);
+  background-color: var(--accent-blue);
+  color: white;
   font-size: 0.75rem;
-  font-weight: 500;
-  padding: 0.25rem 0.75rem;
+  font-weight: 600;
+  padding: 0.3rem 0.8rem;
   border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .link-card-body {
-  padding: 1rem;
+  padding: 1.5rem 1.2rem;
   flex-grow: 1;
 }
 
 .link-card-body h3 {
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--header-text-color);
   margin-bottom: 0.5rem;
   word-break: break-word;
 }
 
-
 .link-card-actions {
   display: flex;
   justify-content: flex-end;
-  gap: 0.5rem;
-  padding: 0 1rem 1rem;
+  gap: 0.75rem;
+  padding: 0 1.2rem 1.2rem;
 }
 
 .action-btn {
-  background-color: #f1f5f9;
+  background-color: #f7f2ec;
   color: var(--secondary-text-color);
-  border: none;
-  border-radius: 6px;
-  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 0.6rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.2s, color 0.2s;
+  transition: background-color 0.2s, color 0.2s, transform 0.2s;
 }
 
 .action-btn:hover {
-  background-color: #e2e8f0;
-  color: var(--primary-text-color);
+  background-color: #fcefee;
+  color: var(--accent-pink);
+  transform: translateY(-2px);
 }
 
 .action-btn.btn-delete:hover {
@@ -229,44 +274,63 @@ body {
     color: var(--danger-color);
 }
 
-/* Empty State */
+/* Charming Empty State */
 .empty-state {
   grid-column: 1 / -1;
   text-align: center;
-  padding: 3rem;
-  background-color: var(--card-bg-color);
-  border-radius: 12px;
+  padding: 4rem 2rem;
+  background-color: #fffefa;
+  border-radius: 20px;
   border: 2px dashed var(--border-color);
 }
 
 .empty-state p {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: var(--secondary-text-color);
+  max-width: 350px;
+  margin: 0 auto;
 }
+
+.empty-state p::before {
+  content: '📝';
+  display: block;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
 
 /* Footer */
 .app-footer {
   text-align: center;
-  margin-top: 3rem;
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
   font-size: 0.9rem;
+  font-weight: 500;
   color: var(--secondary-text-color);
 }
 
 /* Responsive */
 @media (max-width: 640px) {
   .app-container {
-    padding: 1rem;
+    padding: 2rem 1rem;
   }
 
   .app-header h1 {
-    font-size: 2rem;
+    font-size: 2.2rem;
+  }
+  
+  .app-header p {
+    font-size: 1rem;
   }
 
   .card {
-    padding: 1rem;
+    padding: 1.5rem;
+    border-radius: 16px;
   }
   
   .links-grid {
     grid-template-columns: 1fr; /* Stack on mobile */
+    gap: 1.5rem;
   }
 }
