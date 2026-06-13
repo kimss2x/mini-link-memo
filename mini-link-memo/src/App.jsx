@@ -354,7 +354,7 @@ function App() {
             </button>
           </form>
           <p className="form-note">
-            This form will be connected with Formspree.
+            Send a tiny note, bug report, or idea.
           </p>
         </div>
       </main>
