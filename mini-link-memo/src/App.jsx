@@ -1,4 +1,4 @@
-'''import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import './index.css';
 
 // SVG Icons as React Components for better control
@@ -176,4 +176,3 @@ function App() {
 }
 
 export default App;
-''

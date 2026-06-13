@@ -1,4 +1,4 @@
-'''/* General Styles & Resets */
+/* General Styles & Resets */
 :root {
   --bg-color: #f0f4f8;
   --card-bg-color: #ffffff;
@@ -270,4 +270,3 @@ body {
     grid-template-columns: 1fr; /* Stack on mobile */
   }
 }
-''
